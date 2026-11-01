@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mr Clown Top Up Gaming — Recharges jeux mobiles</title>
+<style>
+  :root {
+    --ink: #111827;
+    --muted: #6b7280;
+    --bg: #ffffff;
+    --bg-soft: #f7f7fb;
+    --accent: #7c3aed;
+    --accent-dark: #6d28d9;
+    --gold: #fbbf24;
+    --line: #e5e7eb;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 14px 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; }
+  .logo .mask { font-size: 1.6rem; }
+  .logo small { display: block; font-size: .68rem; font-weight: 600; color: var(--accent); letter-spacing: .08em; }
+  nav { display: flex; gap: 22px; }
+  nav a { color: var(--ink); text-decoration: none; font-size: .92rem; font-weight: 500; }
+  nav a:hover { color: var(--accent); }
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+  .lang-toggle {
+    border: 1px solid var(--line); background: var(--bg-soft);
+    border-radius: 999px; overflow: hidden; display: flex; font-size: .8rem; font-weight: 700;
+  }
+  .lang-toggle button {
+    border: 0; background: transparent; padding: 7px 12px; cursor: pointer; color: var(--muted);
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; }
+  .cart-btn {
+    position: relative; border: 0; cursor: pointer;
+    background: var(--accent); color: #fff; font-weight: 700;
+    padding: 10px 16px; border-radius: 999px; font-size: .9rem;
+  }
+  .cart-btn:hover { background: var(--accent-dark); }
+  .cart-count {
+    position: absolute; top: -6px; right: -6px;
+    background: var(--gold); color: var(--ink);
+    font-size: .7rem; font-weight: 800;
+    min-width: 20px; height: 20px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff;
+  }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; text-align: center; background: linear-gradient(180deg, #f5f3ff 0%, #fff 100%); }
+  .hero .badge {
+    display: inline-block; background: #fff; border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 14px; font-size: .8rem; font-weight: 600;
+    color: var(--accent); margin-bottom: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -.02em; max-width: 720px; margin: 0 auto 16px; }
+  .hero p { color: var(--muted); font-size: 1.08rem; max-width: 580px; margin: 0 auto 28px; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; text-decoration: none;
+    padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: .95rem;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-ghost {
+    background: #fff; color: var(--ink); text-decoration: none;
+    padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: .95rem;
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  /* Features */
+  .features { border-block: 1px solid var(--line); background: var(--bg-soft); }
+  .features-inner {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; max-width: 1100px; margin: 0 auto; padding: 22px 20px;
+  }
+  .feature { display: flex; align-items: center; gap: 10px; justify-content: center; font-size: .9rem; font-weight: 600; }
+  .feature span.ic { font-size: 1.3rem; }
+
+  /* Sections */
+  section { padding: 64px 0; }
+  .section-head { text-align: center; margin-bottom: 36px; }
+  .section-head h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 800; letter-spacing: -.01em; }
+  .section-head p { color: var(--muted); margin-top: 6px; }
+
+  /* Filters */
+  .filters { display: flex; gap: 10px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    padding: 9px 18px; border-radius: 999px; font-size: .88rem; font-weight: 600; cursor: pointer;
+  }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  /* Product grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 20px 20px; display: flex; flex-direction: column;
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card:hover { box-shadow: 0 12px 28px rgba(17,24,39,.10); transform: translateY(-3px); }
+  .card-emoji { font-size: 2.6rem; margin-bottom: 14px; }
+  .card .game { font-size: .72rem; font-weight: 800; letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
+  .card h3 { font-size: 1.02rem; font-weight: 700; margin: 4px 0; }
+  .card-desc { font-size: .85rem; color: var(--muted); flex: 1; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; gap: 8px; }
+  .price { font-weight: 800; font-size: .95rem; white-space: nowrap; }
+  .btn-add {
+    border: 0; cursor: pointer; background: var(--ink); color: #fff;
+    padding: 9px 14px; border-radius: 999px; font-size: .8rem; font-weight: 700;
+  }
+  .btn-add:hover { background: var(--accent); }
+
+  /* About */
+  .about { background: var(--bg-soft); border-block: 1px solid var(--line); }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+  .about-inner .big-emoji { font-size: 5rem; text-align: center; }
+  .about-stats { display: flex; gap: 28px; margin-top: 20px; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+  .stat span { font-size: .82rem; color: var(--muted); }
+
+  /* Contact */
+  .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .contact-card {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
+    text-align: center; background: #fff;
+  }
+  .contact-card .ic { font-size: 1.8rem; }
+  .contact-card h3 { font-size: .98rem; margin: 10px 0 4px; }
+  .contact-card p { font-size: .88rem; color: var(--muted); word-break: break-word; }
+
+  /* Footer */
+  footer { background: var(--ink); color: #fff; padding: 36px 20px; text-align: center; }
+  footer p { opacity: .75; font-size: .88rem; }
+
+  /* Cart drawer */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(17,24,39,.4);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 90;
+  }
+  .overlay.open { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(400px, 100%);
+    background: #fff; z-index: 100; display: flex; flex-direction: column;
+    transform: translateX(105%); transition: transform .28s ease;
+    box-shadow: -12px 0 40px rgba(0,0,0,.12);
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px; border-bottom: 1px solid var(--line);
+  }
+  .drawer-head h3 { font-size: 1.05rem; }
+  .drawer-close { border: 0; background: transparent; font-size: 1.4rem; cursor: pointer; color: var(--muted); }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+  .cart-empty { text-align: center; color: var(--muted); padding: 48px 0; }
+  .cart-item { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .cart-item .ci-emoji { font-size: 1.8rem; }
+  .ci-info { flex: 1; }
+  .ci-info b { font-size: .9rem; display: block; }
+  .ci-info span { font-size: .8rem; color: var(--muted); }
+  .qty { display: flex; align-items: center; gap: 8px; }
+  .qty button {
+    width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; font-weight: 700; color: var(--ink);
+  }
+  .qty button:hover { border-color: var(--accent); color: var(--accent); }
+  .qty span { font-weight: 700; font-size: .9rem; min-width: 18px; text-align: center; }
+  .ci-remove { border: 0; background: transparent; cursor: pointer; color: var(--muted); font-size: 1rem; }
+  .ci-remove:hover { color: var(--accent); }
+  .drawer-foot { border-top: 1px solid var(--line); padding: 18px 20px; }
+  .cart-total { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.05rem; margin-bottom: 14px; }
+  .btn-checkout {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: var(--accent); color: #fff; font-weight: 700;
+    padding: 13px; border-radius: 999px; border: 0; cursor: pointer; font-size: .95rem;
+  }
+  .btn-checkout:hover { background: var(--accent-dark); }
+  .drawer-foot .note { font-size: .75rem; color: var(--muted); text-align: center; margin-top: 10px; }
+
+  /* Account */
+  .account-btn {
+    border: 1px solid var(--line); cursor: pointer;
+    background: #fff; color: var(--ink); font-weight: 700;
+    padding: 10px 14px; border-radius: 999px; font-size: .9rem;
+  }
+  .account-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(17,24,39,.45); z-index: 110;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .25s ease; padding: 20px;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: #fff; border-radius: 20px; max-width: 430px; width: 100%;
+    max-height: 86vh; overflow-y: auto; padding: 26px;
+  }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .modal-head h3 { font-size: 1.2rem; }
+  .tabs { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 20px; }
+  .tabs .tab { flex: 1; border: 0; background: #fff; padding: 10px; font-weight: 700; font-size: .88rem; cursor: pointer; color: var(--muted); }
+  .tabs .tab.active { background: var(--ink); color: #fff; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 6px; }
+  .field input {
+    width: 100%; padding: 11px 14px; border: 1px solid var(--line);
+    border-radius: 12px; font-size: .92rem; outline: none;
+  }
+  .field input:focus { border-color: var(--accent); }
+  .acc-error { color: var(--accent); font-size: .85rem; font-weight: 600; min-height: 1.2em; text-align: center; margin-top: 10px; }
+  .profile { text-align: center; margin-bottom: 18px; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; font-weight: 800; margin: 0 auto 10px;
+  }
+  .profile b { font-size: 1.1rem; display: block; }
+  .profile .muted { color: var(--muted); font-size: .88rem; }
+  .acc-stats { display: flex; gap: 24px; justify-content: center; margin-bottom: 22px; }
+  .acc-stats .stat { text-align: center; }
+  .acc-stats .stat b { display: block; font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+  .acc-stats .stat span { font-size: .78rem; color: var(--muted); }
+  .order-list h4 { font-size: 1rem; margin-bottom: 10px; }
+  .order-item { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; font-size: .88rem; }
+  .order-item .oi-head { display: flex; justify-content: space-between; font-weight: 700; gap: 10px; }
+  .order-item .oi-items { color: var(--muted); font-size: .8rem; margin-top: 4px; white-space: pre-line; }
+  .no-orders { text-align: center; color: var(--muted); font-size: .88rem; padding: 16px 0 6px; }
+  .btn-outline {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: #fff; color: var(--ink); font-weight: 700;
+    padding: 12px; border-radius: 999px; border: 1px solid var(--line); cursor: pointer; font-size: .92rem; margin-top: 14px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Mr Wallet */
+  .wallet-card {
+    border: 1px solid var(--line); border-radius: 16px;
+    background: linear-gradient(135deg, #faf5ff 0%, #fff 70%);
+    padding: 16px; margin-bottom: 22px;
+  }
+  .wallet-head { display: flex; justify-content: space-between; align-items: center; }
+  .wallet-bal { font-size: 1.15rem; color: var(--accent); }
+  .wallet-history { margin-top: 12px; font-size: .8rem; color: var(--muted); }
+  .wh-item { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .wh-item b.pos { color: #16a34a; }
+  .wh-item b.neg { color: var(--accent); }
+  .wallet-inst { font-size: .88rem; color: var(--muted); margin-bottom: 6px; }
+  .wallet-natcash {
+    background: var(--bg-soft); border: 1px dashed var(--line);
+    border-radius: 12px; padding: 12px; text-align: center; font-size: .92rem; margin-top: 10px;
+  }
+  .amounts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .amount-chip {
+    border: 1px solid var(--line); background: #fff; border-radius: 12px;
+    padding: 12px; font-weight: 700; cursor: pointer; font-size: .95rem;
+  }
+  .amount-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .amount-chip.selected { border-color: var(--accent); color: var(--accent); background: #faf5ff; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--ink); color: #fff; padding: 12px 22px; border-radius: 999px;
+    font-size: .88rem; font-weight: 600; z-index: 120;
+    transition: transform .25s ease; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 720px) {
+    nav { display: none; }
+    .about-inner { grid-template-columns: 1fr; }
+    .about-inner .big-emoji { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="mask">🤡</span>
+      <div>Mr Clown<small>🎮 TOP UP GAMING</small></div>
+    </div>
+    <nav>
+      <a href="#boutique" data-i18n="nav.shop"></a>
+      <a href="#apropos" data-i18n="nav.about"></a>
+      <a href="#contact" data-i18n="nav.contact"></a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button id="btnFr" onclick="setLang('fr')">FR</button>
+        <button id="btnKr" onclick="setLang('kr')">KR</button>
+      </div>
+      <button class="account-btn" onclick="openAccount()">👤 <span id="accountLabel">Compte</span></button>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span data-i18n="nav.cart"></span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge" data-i18n="hero.badge"></div>
+    <h1 data-i18n="hero.title"></h1>
+    <p data-i18n="hero.subtitle"></p>
+    <div class="hero-ctas">
+      <a href="#boutique" class="btn-primary" data-i18n="hero.cta"></a>
+      <a href="#contact" class="btn-ghost" data-i18n="hero.cta2"></a>
+    </div>
+  </div>
+</section>
+
+<div class="features">
+  <div class="features-inner">
+    <div class="feature"><span class="ic">⚡</span><span data-i18n="feat.fast"></span></div>
+    <div class="feature"><span class="ic">💵</span><span data-i18n="feat.payment"></span></div>
+    <div class="feature"><span class="ic">🎧</span><span data-i18n="feat.support"></span></div>
+  </div>
+</div>
+
+<section id="boutique">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="shop.title"></h2>
+      <p data-i18n="shop.subtitle"></p>
+    </div>
+    <div class="filters">
+      <button class="chip" id="chip-all" onclick="setFilter('all')" data-i18n="filter.all"></button>
+      <button class="chip" id="chip-topup" onclick="setFilter('topup')" data-i18n="filter.topup"></button>
+      <button class="chip" id="chip-giftcard" onclick="setFilter('giftcard')" data-i18n="filter.giftcard"></button>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="about" id="apropos">
+  <div class="container about-inner">
+    <div class="big-emoji">🎮</div>
+    <div>
+      <h2 data-i18n="about.title"></h2>
+      <p style="margin-top:12px; color:var(--muted);" data-i18n="about.text"></p>
+      <div class="about-stats">
+        <div class="stat"><b>1000+</b><span data-i18n="stat.recharges"></span></div>
+        <div class="stat"><b>500+</b><span data-i18n="stat.players"></span></div>
+        <div class="stat"><b>24/7</b><span data-i18n="stat.support"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="contact.title"></h2>
+      <p data-i18n="contact.subtitle"></p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card"><div class="ic">💬</div><h3>WhatsApp</h3><p><a href="https://wa.me/50947519750" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:600;">+509 47 51 9750</a></p></div>
+      <div class="contact-card"><div class="ic">📧</div><h3>Email</h3><p>mrclown509ht@gmail.com</p></div>
+      <div class="contact-card"><div class="ic">📸</div><h3>Instagram</h3><p>@mrclown509ht</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><b>Mr Clown Top Up Gaming 🎮</b></p>
+    <p data-i18n="footer.text" style="margin-top:6px;"></p>
+    <p style="margin-top:14px; opacity:.5;">© 2026 Mr Clown Top Up Gaming — Haïti</p>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3 data-i18n="cart.title"></h3>
+    <button class="drawer-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="cart-total"><span data-i18n="cart.total"></span><span id="cartTotal">0 HTG</span></div>
+    <button class="btn-outline" id="walletPayBtn" onclick="payWithWallet()" style="display:none; margin-top:0;"></button>
+    <a class="btn-checkout" id="checkoutBtn" href="#" onclick="checkout(event)" data-i18n="cart.checkout"></a>
+    <p class="note" data-i18n="cart.note"></p>
+  </div>
+</aside>
+
+<!-- Account modal -->
+<div class="modal-overlay" id="accountOverlay" onclick="if(event.target===this)closeAccount()">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 data-i18n="account.title"></h3>
+      <button class="drawer-close" onclick="closeAccount()">✕</button>
+    </div>
+    <div id="accountBody"></div>
+  </div>
+</div>
+
+<!-- Mr Wallet modal -->
+<div class="modal-overlay" id="walletOverlay" onclick="if(event.target===this)closeWallet()">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>💰 Mr Wallet</h3>
+      <button class="drawer-close" onclick="closeWallet()">✕</button>
+    </div>
+    <div id="walletBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ---------- i18n ----------
+  const t = {
+    fr: {
+      "nav.shop": "Boutique",
+      "nav.about": "À propos",
+      "nav.contact": "Contact",
+      "nav.cart": "Panier",
+      "hero.badge": "🎮 Recharges gaming N°1 en Haïti",
+      "hero.title": "Recharge ton jeu préféré en quelques minutes ⚡",
+      "hero.subtitle": "Diamants Free Fire, Mobile Legends, PUBG UC, Robux et cartes cadeaux — livraison rapide partout en Haïti.",
+      "hero.cta": "Commander maintenant",
+      "hero.cta2": "Voir la boutique",
+      "feat.fast": "Livraison rapide (5 à 30 min)",
+      "feat.payment": "Paiement MonCash / PayPal",
+      "feat.support": "Support 7j/7 sur WhatsApp",
+      "shop.title": "Nos recharges & cartes",
+      "shop.subtitle": "Choisis ta recharge, ajoute-la au panier et on s'occupe du reste.",
+      "filter.all": "Tout",
+      "filter.topup": "Recharges",
+      "filter.giftcard": "Cartes cadeaux",
+      "add": "Ajouter",
+      "about.title": "Le top-up gaming de confiance en Haïti",
+      "about.text": "Mr Clown Top Up Gaming, c'est le service de recharge le plus rapide et fiable pour les gamers haïtiens. Diamants, UC, Robux, CP, cartes Steam et Google Play — envoyés directement sur ton compte de jeu après paiement. Pas d'attente, pas de stress : tu paies, tu joues !",
+      "stat.recharges": "Recharges livrées",
+      "stat.players": "Gamers satisfaits",
+      "stat.support": "Support disponible",
+      "contact.title": "Contacte-nous",
+      "contact.subtitle": "Une question, une recharge sur mesure, un souci ? On te répond vite !",
+      "cart.title": "Ton panier",
+      "cart.total": "Total",
+      "cart.checkout": "Commander par email",
+      "cart.empty": "Ton panier est vide. 🎮",
+      "cart.note": "Tu recevras un email de confirmation, puis le code ou la recharge après paiement (MonCash / PayPal).",
+      "toast.added": "Ajouté au panier ✓",
+      "account.guest": "Compte",
+      "account.title": "Mon compte",
+      "account.login": "Se connecter",
+      "account.signup": "Créer un compte",
+      "account.name": "Nom complet",
+      "account.email": "Email",
+      "account.password": "Mot de passe",
+      "account.loginBtn": "Se connecter",
+      "account.signupBtn": "Créer mon compte",
+      "account.logout": "Déconnexion",
+      "account.welcome": "Salut",
+      "account.bye": "À bientôt ! 👋",
+      "account.orders": "Mes commandes",
+      "account.orderCount": "Commandes",
+      "account.noOrders": "Aucune commande pour le moment. 🎮",
+      "account.orderPrefix": "Commande du",
+      "account.errFill": "Remplis tous les champs.",
+      "account.errEmail": "Email ou mot de passe incorrect.",
+      "account.errExists": "Un compte existe déjà avec cet email.",
+      "account.errPass": "Mot de passe trop court (6 caractères min.).",
+      "wallet.pay": "Payer avec Mr Wallet",
+      "wallet.topup": "Recharger mon wallet",
+      "wallet.custom": "Ou entre ton montant (min. 100 HTG)",
+      "wallet.confirmCustom": "Confirmer la recharge",
+      "wallet.natcashInfo": "Envoie le montant via NatCash au +509 58 07 5299, puis entre le code de transaction (transcode) du transfert ci-dessous. Chaque code est vérifié : un code déjà utilisé sera rejeté.",
+      "wallet.transcode": "Code de transaction NatCash (transcode)",
+      "wallet.errCodeEmpty": "Entre le code de transaction du transfert NatCash.",
+      "wallet.errCodeFormat": "Code invalide — vérifie le transcode dans le SMS de confirmation ou l'app NatCash.",
+      "wallet.errCodeUsed": "Ce code de transaction a déjà été utilisé.",
+      "wallet.min": "Montant minimum : 100 HTG.",
+      "wallet.success": "Wallet rechargé ✓",
+      "wallet.paidDone": "Commande payée avec Mr Wallet ✓",
+      "wallet.insufficient": "Solde insuffisant — recharge ton wallet. 💰",
+      "wallet.needLogin": "Connecte-toi pour utiliser Mr Wallet.",
+      "wallet.typeTopup": "Recharge NatCash",
+      "wallet.typePayment": "Paiement commande",
+      "footer.text": "Recharges rapides, prix compétitifs, service fiable — pour tous les gamers d'Haïti."
+    },
+    kr: {
+      "nav.shop": "Boutik",
+      "nav.about": "Konsènan nou",
+      "nav.contact": "Kontakte",
+      "nav.cart": "Panyen",
+      "hero.badge": "🎮 Rechaj gaming N°1 nan Ayiti",
+      "hero.title": "Charje jwèt ou pi renmen an nan kèk minit ⚡",
+      "hero.subtitle": "Dyaman Free Fire, Mobile Legends, PUBG UC, Robux ak kat kado — livrezon rapid nan tout Ayiti.",
+      "hero.cta": "Kòmane kounye a",
+      "hero.cta2": "Gade boutik la",
+      "feat.fast": "Livrezon rapid (5 a 30 min)",
+      "feat.payment": "Peman MonCash / PayPal",
+      "feat.support": "Sipò 7j/7 sou WhatsApp",
+      "shop.title": "Rechaj ak kat nou yo",
+      "shop.subtitle": "Chwazi rechaj ou, ajoute l nan panyen, rès la se pou nou.",
+      "filter.all": "Tout",
+      "filter.topup": "Rechaj",
+      "filter.giftcard": "Kat kado",
+      "add": "Ajoute",
+      "about.title": "Sèvis top-up gaming ou ka fè konfyans nan Ayiti",
+      "about.text": "Mr Clown Top Up Gaming, se sèvis rechaj ki pi rapid ak pi serye pou gamer ayisyen yo. Dyaman, UC, Robux, CP, kat Steam ak Google Play — n'ap voye yo dirèkteman sou kont jwèt ou apre peman. Pa gen tann, pa gen estrès : ou peye, w'ap jwe !",
+      "stat.recharges": "Rechaj ki rive",
+      "stat.players": "Gamer ki kontan",
+      "stat.support": "Sipò disponib",
+      "contact.title": "Kontakte nou",
+      "contact.subtitle": "Yon kesyon, yon rechaj espesyal, yon pwoblèm ? N'ap reponn ou byen vit !",
+      "cart.title": "Panyen ou",
+      "cart.total": "Total",
+      "cart.checkout": "Kòmane pa imèl",
+      "cart.empty": "Panyen ou vid. 🎮",
+      "cart.note": "W'ap resevwa yon imèl konfime, apre sa kòd la oswa rechaj la apre w'ap fin peye (MonCash / PayPal).",
+      "toast.added": "Ajoute nan panyen ✓",
+      "account.guest": "Kont",
+      "account.title": "Kont mwen",
+      "account.login": "Konekte",
+      "account.signup": "Kreye yon kont",
+      "account.name": "Non konplè",
+      "account.email": "Imèl",
+      "account.password": "Modpas",
+      "account.loginBtn": "Konekte",
+      "account.signupBtn": "Kreye kont mwen",
+      "account.logout": "Dekonekte",
+      "account.welcome": "Bonjou",
+      "account.bye": "Na wè pita ! 👋",
+      "account.orders": "Kòmand mwen yo",
+      "account.orderCount": "Kòmand",
+      "account.noOrders": "Pa gen kòmand pou kounye a. 🎮",
+      "account.orderPrefix": "Kòmand jou a",
+      "account.errFill": "Ranpli tout chan yo.",
+      "account.errEmail": "Imèl oswa modpas pa bon.",
+      "account.errExists": "Gen yon kont ki deja egziste ak imèl sa a.",
+      "account.errPass": "Modpas twò kout (6 karaktè minimòm).",
+      "wallet.pay": "Peye ak Mr Wallet",
+      "wallet.topup": "Rechaje wallet mwen",
+      "wallet.custom": "Oswa mete montan ou (min. 100 HTG)",
+      "wallet.confirmCustom": "Konfime rechaj la",
+      "wallet.natcashInfo": "Voye montan an pa NatCash nan +509 58 07 5299, apre sa mete kòd transaksyon transfè a anba a. Chak kòd ap tcheke : yon kòd ki deja sèvi ap rejte.",
+      "wallet.transcode": "Kòd transaksyon NatCash (transcode)",
+      "wallet.errCodeEmpty": "Mete kòd transaksyon transfè NatCash ou a.",
+      "wallet.errCodeFormat": "Kòd pa valid — tcheke transcode a nan SMS konfime a oswa app NatCash la.",
+      "wallet.errCodeUsed": "Kòd transaksyon sa a deja sèvi.",
+      "wallet.min": "Minimòm : 100 HTG.",
+      "wallet.success": "Wallet ou chaje ✓",
+      "wallet.paidDone": "Kòmand ou peye ak Mr Wallet ✓",
+      "wallet.insufficient": "Balans pa ase — rechaje wallet ou. 💰",
+      "wallet.needLogin": "Konekte pou w' ka sèvi ak Mr Wallet.",
+      "wallet.typeTopup": "Rechaj NatCash",
+      "wallet.typePayment": "Peman kòmand",
+      "footer.text": "Rechaj rapid, bon pri, sèvis serye — pou tout gamer nan Ayiti."
+    }
+  };
+
+  // ---------- Products ----------
+  const products = [
+    { id: 1, emoji: "💎", game: "Free Fire", cat: "topup", price: 250,
+      fr: { name: "100 Diamants Free Fire", desc: "Livré sur ton ID Free Fire en quelques minutes." },
+      kr: { name: "100 Dyaman Free Fire", desc: "N'ap voye l sou ID Free Fire ou nan kèk minit." } },
+    { id: 2, emoji: "💎", game: "Free Fire", cat: "topup", price: 1100,
+      fr: { name: "520 Diamants Free Fire", desc: "Le pack best-value pour les passionnés." },
+      kr: { name: "520 Dyaman Free Fire", desc: "Pak ki pi byen valè pou moun ki renmen jwe." } },
+    { id: 3, emoji: "🔮", game: "Mobile Legends", cat: "topup", price: 250,
+      fr: { name: "86 Diamants Mobile Legends", desc: "Achète skins et pass MLBB en un clic." },
+      kr: { name: "86 Dyaman Mobile Legends", desc: "Achte skin ak pass MLBB avèk yon klik." } },
+    { id: 4, emoji: "🪖", game: "PUBG Mobile", cat: "topup", price: 300,
+      fr: { name: "60 UC PUBG Mobile", desc: "UC livrés directement sur ton compte." },
+      kr: { name: "60 UC PUBG Mobile", desc: "N'ap voye UC yo dirèkteman sou kont ou." } },
+    { id: 5, emoji: "🟥", game: "Roblox", cat: "topup", price: 600,
+      fr: { name: "400 Robux", desc: "Robux crédités sur ton compte Roblox." },
+      kr: { name: "400 Robux", desc: "N'ap mete Robux sou kont Roblox ou." } },
+    { id: 6, emoji: "🔫", game: "Call of Duty Mobile", cat: "topup", price: 350,
+      fr: { name: "80 CP CoD Mobile", desc: "Crédits CP pour la boutique du jeu." },
+      kr: { name: "80 CP CoD Mobile", desc: "Kredi CP pou boutik jwèt la." } },
+    { id: 7, emoji: "🎮", game: "Steam", cat: "giftcard", price: 950,
+      fr: { name: "Carte cadeau Steam 5 USD", desc: "Code envoyé par email après paiement." },
+      kr: { name: "Kat kado Steam 5 USD", desc: "N'ap voye kòd la pa imèl apre peman." } },
+    { id: 8, emoji: "▶️", game: "Google Play", cat: "giftcard", price: 950,
+      fr: { name: "Carte cadeau Google Play 5 USD", desc: "Pour tous tes achats sur Play Store." },
+      kr: { name: "Kat kado Google Play 5 USD", desc: "Pou tout achat ou sou Play Store." } }
+  ];
+
+  const CONTACT_EMAIL = "mrclown509ht@gmail.com";
+
+  // ---------- State ----------
+  let lang = "fr";
+  let filter = "all";
+  let accMode = "login";
+  const cart = {}; // id -> qty
+
+  // ---------- Stockage local (avec repli mémoire si indisponible) ----------
+  const store = {
+    _mem: {},
+    _ok: (function(){ try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); return true; } catch(e) { return false; } })(),
+    get(k, d) {
+      if (this._ok) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e) { return d; } }
+      return (k in this._mem) ? this._mem[k] : d;
+    },
+    set(k, v) {
+      if (this._ok) { try { localStorage.setItem(k, JSON.stringify(v)); return; } catch(e) {} }
+      this._mem[k] = v;
+    }
+  };
+
+  let users = store.get("mc_users", []);          // [{name, email, hash}]
+  let session = store.get("mc_session", null);    // email de l'utilisateur connecté
+  let orderHistory = store.get("mc_orders", {});  // email -> [{date, text, total}]
+  let wallets = store.get("mc_wallets", {});       // email -> {balance, history}
+  let topupAmount = 0;                             // montant sélectionné dans le wallet
+
+  function hashPass(s) {
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+    return "h" + (h >>> 0).toString(36);
+  }
+
+  // ---------- Helpers ----------
+  function fmtPrice(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " HTG";
+  }
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // ---------- i18n apply ----------
+  function applyI18n() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (t[lang][key] !== undefined) el.textContent = t[lang][key];
+    });
+    document.documentElement.lang = lang === "fr" ? "fr" : "ht";
+    document.getElementById("btnFr").classList.toggle("active", lang === "fr");
+    document.getElementById("btnKr").classList.toggle("active", lang === "kr");
+    renderProducts();
+    renderCart();
+    renderAccount();
+    updateAccountUI();
+  }
+  function setLang(l) { lang = l; applyI18n(); }
+
+  // ---------- Products ----------
+  function setFilter(f) {
+    filter = f;
+    ["all", "topup", "giftcard"].forEach(k => {
+      document.getElementById("chip-" + k).classList.toggle("active", k === f);
+    });
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById("productGrid");
+    const list = products.filter(p => filter === "all" || p.cat === filter);
+    grid.innerHTML = list.map(p => `
+      <article class="card">
+        <div class="card-emoji">${p.emoji}</div>
+        <span class="game">${esc(p.game)}</span>
+        <h3>${esc(p[lang].name)}</h3>
+        <p class="card-desc">${esc(p[lang].desc)}</p>
+        <div class="card-footer">
+          <span class="price">${fmtPrice(p.price)}</span>
+          <button class="btn-add" onclick="addToCart(${p.id})">${esc(t[lang].add)}</button>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  // ---------- Cart ----------
+  function addToCart(id) {
+    cart[id] = (cart[id] || 0) + 1;
+    renderCart();
+    showToast(t[lang].toast.added);
+  }
+  function changeQty(id, delta) {
+    cart[id] = (cart[id] || 0) + delta;
+    if (cart[id] <= 0) delete cart[id];
+    renderCart();
+  }
+  function removeItem(id) {
+    delete cart[id];
+    renderCart();
+  }
+
+  function renderCart() {
+    const ids = Object.keys(cart).map(Number);
+    const count = ids.reduce((s, id) => s + cart[id], 0);
+    document.getElementById("cartCount").textContent = count;
+
+    const box = document.getElementById("cartItems");
+    if (ids.length === 0) {
+      box.innerHTML = `<div class="cart-empty">${esc(t[lang].cart.empty)}</div>`;
+    } else {
+      box.innerHTML = ids.map(id => {
+        const p = products.find(x => x.id === id);
+        return `
+          <div class="cart-item">
+            <span class="ci-emoji">${p.emoji}</span>
+            <div class="ci-info">
+              <b>${esc(p[lang].name)}</b>
+              <span>${fmtPrice(p.price)}</span>
+            </div>
+            <div class="qty">
+              <button onclick="changeQty(${id},-1)">−</button>
+              <span>${cart[id]}</span>
+              <button onclick="changeQty(${id},1)">+</button>
+            </div>
+            <button class="ci-remove" onclick="removeItem(${id})">🗑</button>
+          </div>`;
+      }).join("");
+    }
+
+    const total = ids.reduce((s, id) => s + cart[id] * products.find(x => x.id === id).price, 0);
+    document.getElementById("cartTotal").textContent = fmtPrice(total);
+    updateWalletPayButton(total, count);
+  }
+
+  function updateWalletPayButton(total, count) {
+    const btn = document.getElementById("walletPayBtn");
+    if (!btn) return;
+    if (!session || count === 0) { btn.style.display = "none"; return; }
+    const w = wallets[session] || { balance: 0 };
+    btn.style.display = "block";
+    btn.textContent = "💰 " + T("wallet.pay") + " — " + fmtPrice(w.balance);
+  }
+
+  function openCart() {
+    document.getElementById("drawer").classList.add("open");
+    document.getElementById("overlay").classList.add("open");
+  }
+  function closeCart() {
+    document.getElementById("drawer").classList.remove("open");
+    document.getElementById("overlay").classList.remove("open");
+  }
+
+  function checkout(e) {
+    e.preventDefault();
+    const ids = Object.keys(cart).map(Number);
+    if (ids.length === 0) return;
+    const subject = "🎮 Nouvelle commande — Mr Clown Top Up Gaming";
+    let total = 0;
+    const lines = ids.map(id => {
+      const p = products.find(x => x.id === id);
+      total += cart[id] * p.price;
+      return `- ${cart[id]}x ${p[lang].name} — ${fmtPrice(p.price * cart[id])}`;
+    });
+    if (session) {
+      const my = orderHistory[session] || [];
+      my.unshift({
+        date: new Date().toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US"),
+        text: lines.join("\n"),
+        total: total
+      });
+      orderHistory[session] = my;
+      store.set("mc_orders", orderHistory);
+    }
+    const body = "Bonjour Mr Clown Top Up Gaming,\n\nJe souhaite commander :\n\n"
+      + lines.join("\n") + "\n\n" + t[lang].cart.total + " : " + fmtPrice(total)
+      + "\n\nMon pseudo / ID de jeu : \nMon numéro WhatsApp : ";
+    window.location.href = "mailto:" + CONTACT_EMAIL
+      + "?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(body);
+  }
+
+  // ---------- Mr Wallet ----------
+  function todayStr() {
+    return new Date().toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US");
+  }
+  function getWallet() {
+    if (!session) return null;
+    if (!wallets[session]) wallets[session] = { balance: 0, history: [] };
+    return wallets[session];
+  }
+  function saveWallet() { store.set("mc_wallets", wallets); }
+
+  function openWallet() {
+    if (!session) { openAccount(); return; }
+    document.getElementById("walletOverlay").classList.add("open");
+    renderWalletBody();
+  }
+  function closeWallet() {
+    document.getElementById("walletOverlay").classList.remove("open");
+  }
+  function walletError(msg) {
+    const el = document.getElementById("walletError");
+    if (el) el.textContent = msg;
+  }
+
+  function renderWalletBody() {
+    const box = document.getElementById("walletBody");
+    const w = getWallet();
+    if (!w) return;
+    box.innerHTML = `
+      <p class="wallet-inst">${T("wallet.natcashInfo")}</p>
+      <div class="wallet-natcash">📲 NatCash — <b>+509 58 07 5299</b></div>
+      <div class="amounts">
+        <button class="amount-chip" onclick="selectAmount(250, this)">250 HTG</button>
+        <button class="amount-chip" onclick="selectAmount(500, this)">500 HTG</button>
+        <button class="amount-chip" onclick="selectAmount(1000, this)">1000 HTG</button>
+        <button class="amount-chip" onclick="selectAmount(2500, this)">2500 HTG</button>
+      </div>
+      <form onsubmit="submitTopup(event)">
+        <div class="field">
+          <label>${T("wallet.custom")}</label>
+          <input type="number" id="customAmount" min="100" step="50" oninput="topupAmount=0" />
+        </div>
+        <div class="field">
+          <label>${T("wallet.transcode")}</label>
+          <input type="text" id="transcode" placeholder="ex : NC8X2K9L4M" autocomplete="off" />
+        </div>
+        <button class="btn-checkout" type="submit">${T("wallet.confirmCustom")}</button>
+      </form>
+      <p class="acc-error" id="walletError"></p>`;
+  }
+
+  function selectAmount(a, btn) {
+    topupAmount = a;
+    document.getElementById("customAmount").value = "";
+    document.querySelectorAll(".amount-chip").forEach(c => c.classList.remove("selected"));
+    if (btn) btn.classList.add("selected");
+  }
+
+  function submitTopup(e) {
+    e.preventDefault();
+    const custom = parseInt(document.getElementById("customAmount").value, 10);
+    const amount = (custom && custom >= 100) ? custom : topupAmount;
+    const code = document.getElementById("transcode").value.trim().toUpperCase();
+    if (!amount || amount < 100) return walletError(T("wallet.min"));
+    if (!code) return walletError(T("wallet.errCodeEmpty"));
+    if (!/^[A-Z0-9-]{6,20}$/.test(code)) return walletError(T("wallet.errCodeFormat"));
+    const w = getWallet();
+    if (!w) return;
+    const alreadyUsed = Object.values(wallets).some(w2 =>
+      (w2.history || []).some(h => h.code === code)
+    );
+    if (alreadyUsed) return walletError(T("wallet.errCodeUsed"));
+    w.balance += amount;
+    w.history.unshift({ type: "topup", amount: amount, date: todayStr(), code: code });
+    saveWallet();
+    walletError("");
+    topupAmount = 0;
+    renderWalletBody();
+    renderAccount();
+    renderCart();
+    showToast(T("wallet.success") + " +" + amount + " HTG");
+  }
+
+  function payWithWallet() {
+    const ids = Object.keys(cart).map(Number);
+    if (ids.length === 0) return;
+    const total = ids.reduce((s, id) => s + cart[id] * products.find(x => x.id === id).price, 0);
+    const w = getWallet();
+    if (!w) { showToast(T("wallet.needLogin")); openAccount(); return; }
+    if (w.balance < total) { showToast(T("wallet.insufficient")); return; }
+    const lines = ids.map(id => {
+      const p = products.find(x => x.id === id);
+      return "- " + cart[id] + "x " + p[lang].name + " — " + fmtPrice(p.price * cart[id]);
+    });
+    w.balance -= total;
+    w.history.unshift({ type: "payment", amount: -total, date: todayStr() });
+    saveWallet();
+    const my = orderHistory[session] || [];
+    my.unshift({ date: todayStr(), text: lines.join("\n"), total: total });
+    orderHistory[session] = my;
+    store.set("mc_orders", orderHistory);
+    ids.forEach(id => delete cart[id]);
+    renderAccount();
+    renderCart();
+    closeCart();
+    showToast(T("wallet.paidDone"));
+  }
+
+  // ---------- Account ----------
+  function T(key) { return t[lang][key] || ""; }
+
+  function openAccount() {
+    document.getElementById("accountOverlay").classList.add("open");
+    renderAccount();
+  }
+  function closeAccount() {
+    document.getElementById("accountOverlay").classList.remove("open");
+  }
+  function setAccMode(m) { accMode = m; renderAccount(); }
+
+  function renderAccount() {
+    const box = document.getElementById("accountBody");
+    if (!session) {
+      const isLogin = accMode === "login";
+      box.innerHTML = `
+        <div class="tabs">
+          <button class="tab ${isLogin ? "active" : ""}" onclick="setAccMode('login')">${T("account.login")}</button>
+          <button class="tab ${isLogin ? "" : "active"}" onclick="setAccMode('signup')">${T("account.signup")}</button>
+        </div>
+        <form onsubmit="${isLogin ? "doLogin(event)" : "doSignup(event)"}">
+          ${!isLogin ? `
+          <div class="field">
+            <label>${T("account.name")}</label>
+            <input type="text" id="accName" autocomplete="name" />
+          </div>` : ""}
+          <div class="field">
+            <label>${T("account.email")}</label>
+            <input type="email" id="accEmail" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label>${T("account.password")}</label>
+            <input type="password" id="accPass" />
+          </div>
+          <button class="btn-checkout" type="submit">${isLogin ? T("account.loginBtn") : T("account.signupBtn")}</button>
+        </form>
+        <p class="acc-error" id="accError"></p>`;
+    } else {
+      const user = users.find(u => u.email === session);
+      const my = orderHistory[session] || [];
+      const spent = my.reduce((s, o) => s + o.total, 0);
+      const w = getWallet();
+      const initial = user ? user.name.trim().charAt(0).toUpperCase() : "?";
+      const ordersHtml = my.length === 0
+        ? `<p class="no-orders">${T("account.noOrders")}</p>`
+        : my.map(o => `
+            <div class="order-item">
+              <div class="oi-head"><span>${T("account.orderPrefix")} ${esc(o.date)}</span><span>${fmtPrice(o.total)}</span></div>
+              <div class="oi-items">${esc(o.text)}</div>
+            </div>`).join("");
+      box.innerHTML = `
+        <div class="profile">
+          <div class="avatar">${esc(initial)}</div>
+          <b>${T("account.welcome")}, ${esc(user ? user.name : "")} 👋</b>
+          <p class="muted">${esc(session)}</p>
+        </div>
+        <div class="wallet-card">
+          <div class="wallet-head">
+            <span>💰 <b>Mr Wallet</b></span>
+            <b class="wallet-bal">${fmtPrice(w.balance)}</b>
+          </div>
+          <button class="btn-checkout" style="margin-top:12px;" onclick="openWallet()">${T("wallet.topup")}</button>
+          ${w.history.length ? `
+          <div class="wallet-history">
+            ${w.history.slice(0, 4).map(h => `
+            <div class="wh-item"><span>${(h.type === "topup" ? T("wallet.typeTopup") + (h.code ? " · " + esc(h.code) : "") : T("wallet.typePayment"))} — ${esc(h.date)}</span><b class="${h.amount >= 0 ? "pos" : "neg"}">${h.amount >= 0 ? "+" : ""}${fmtPrice(h.amount)}</b></div>`).join("")}
+          </div>` : ""}
+        </div>
+        <div class="acc-stats">
+          <div class="stat"><b>${my.length}</b><span>${T("account.orderCount")}</span></div>
+          <div class="stat"><b>${fmtPrice(spent)}</b><span>${T("cart.total")}</span></div>
+        </div>
+        <div class="order-list">
+          <h4>${T("account.orders")}</h4>
+          ${ordersHtml}
+        </div>
+        <button class="btn-outline" onclick="doLogout()">${T("account.logout")}</button>`;
+    }
+  }
+
+  function accError(msg) {
+    const el = document.getElementById("accError");
+    if (el) el.textContent = msg;
+  }
+
+  function doLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById("accEmail").value.trim().toLowerCase();
+    const pass = document.getElementById("accPass").value;
+    if (!email || !pass) return accError(T("account.errFill"));
+    const user = users.find(u => u.email === email && u.hash === hashPass(pass));
+    if (!user) return accError(T("account.errEmail"));
+    session = email;
+    store.set("mc_session", session);
+    renderAccount();
+    updateAccountUI();
+    showToast(T("account.welcome") + " " + user.name + " 👋");
+  }
+
+  function doSignup(e) {
+    e.preventDefault();
+    const name = document.getElementById("accName").value.trim();
+    const email = document.getElementById("accEmail").value.trim().toLowerCase();
+    const pass = document.getElementById("accPass").value;
+    if (!name || !email || !pass) return accError(T("account.errFill"));
+    if (pass.length < 6) return accError(T("account.errPass"));
+    if (users.some(u => u.email === email)) return accError(T("account.errExists"));
+    users.push({ name: name, email: email, hash: hashPass(pass) });
+    store.set("mc_users", users);
+    session = email;
+    store.set("mc_session", session);
+    renderAccount();
+    updateAccountUI();
+    showToast(T("account.welcome") + " " + name + " 👋");
+  }
+
+  function doLogout() {
+    session = null;
+    store.set("mc_session", null);
+    accMode = "login";
+    renderAccount();
+    updateAccountUI();
+    showToast(T("account.bye"));
+  }
+
+  function updateAccountUI() {
+    const label = document.getElementById("accountLabel");
+    if (!label) return;
+    if (session) {
+      const user = users.find(u => u.email === session);
+      label.textContent = user ? user.name.split(" ")[0] : session;
+    } else {
+      label.textContent = T("account.guest");
+    }
+  }
+
+  // ---------- Toast ----------
+  let toastTimer = null;
+  function showToast(msg) {
+    const el = document.getElementById("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 1800);
+  }
+
+  // ---------- Init ----------
+  applyI18n();
+  setFilter("all");
+</script>
+</body>
+</html>

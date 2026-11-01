@@ -9,3 +9,5 @@ Boutique en ligne de recharges pour jeux mobiles en Haïti.
 - 🇭🇹 Bilingue français / créole
 
 Le site est déployé automatiquement sur GitHub Pages à chaque modification de la branche `main`.
+
+🚀 Site en ligne sur GitHub Pages.
